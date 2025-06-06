@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Suivi CNAPS</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    table { width: 100%%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+    input, button { margin: 5px 0; padding: 5px; }
+  </style>
+</head>
+<body>
+  <h2>Suivi CNAPS avec base de données</h2>
+  <form method="POST" action="/add">
+    <input name="nom" placeholder="Nom" required>
+    <input name="prenom" placeholder="Prénom" required>
+    <input name="lien" placeholder="Lien CNAPS" required>
+    <button type="submit">Ajouter</button>
+  </form>
+  <table>
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Lien CNAPS</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for d in dossiers %}
+      <tr>
+        <td>{{ d[1] }}</td>
+        <td>{{ d[2] }}</td>
+        <td><a href="{{ d[3] }}" target="_blank">{{ d[3] }}</a></td>
+        <td><a href="/delete/{{ d[0] }}">Supprimer</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>
